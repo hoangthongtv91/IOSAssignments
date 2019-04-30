@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7Vr-fb-7Ld">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Blue View Controller-->
+        <scene sceneID="RMe-2e-dVx">
+            <objects>
+                <viewController id="la4-cN-itJ" customClass="BlueViewController" customModule="MultipleMVC" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hWh-eU-whA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="NJa-9X-aKf"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="history" id="v8N-dd-QdX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G1d-ia-njo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5988" y="121"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="q86-Bt-Vkh">
+            <objects>
+                <splitViewController id="7Vr-fb-7Ld" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="z5g-yd-yze" kind="relationship" relationship="masterViewController" id="zRQ-0I-bGH"/>
+                        <segue destination="la4-cN-itJ" kind="relationship" relationship="detailViewController" id="Bja-Dg-v2Y"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uxs-PK-hRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7164" y="-425"/>
+        </scene>
+        <!--Green View Controller-->
+        <scene sceneID="XPe-IM-dmM">
+            <objects>
+                <viewController id="P7v-Yc-JdH" customClass="GreenViewController" customModule="MultipleMVC" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lvz-US-eM4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MbI-p5-DDw">
+                                <rect key="frame" x="184" y="433" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="la4-cN-itJ" kind="showDetail" id="HrQ-RK-Ezk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="eT7-i3-OxR"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="iqz-V9-iL6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gqj-Kt-AYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5078.2608695652179" y="-810.26785714285711"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Bi4-Tt-Wd1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z5g-yd-yze" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="80V-7R-HZE"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eVo-MF-0jv">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="P7v-Yc-JdH" kind="relationship" relationship="rootViewController" id="2Ot-9D-SXQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e7e-yA-Imc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5988.4057971014499" y="-810.26785714285711"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="HrQ-RK-Ezk"/>
+    </inferredMetricsTieBreakers>
+</document>
