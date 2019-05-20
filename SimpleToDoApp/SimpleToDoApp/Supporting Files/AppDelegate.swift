@@ -15,13 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var taskArray: [ToDo] = []
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let task1 = ToDo(title: "Doing homework", toDoDescription: "3 labs and 4 assignments", priority: 1, isCompleted: true)
-        let task2 = ToDo(title: "Doing housework", toDoDescription: "laundry, sweeping, making the bed, cleaning", priority: 4, isCompleted: true)
-        let task3 = ToDo(title: "Going to the market", toDoDescription: "Eggs, Milk, Toasts, Cheese, Butter, Bacon", priority: 2, isCompleted: true)
-        let task4 = ToDo(title: "Going to the bank", toDoDescription: "Opening a new account, asking for the tax residency", priority: 3, isCompleted: false)
-        let task5 = ToDo(title: "Go shopping", toDoDescription: "Shirts, pants, jackets, blazers", priority: 5, isCompleted: false)
-        taskArray = [task1, task2, task3, task4, task5]
-        
         return true
     }
 

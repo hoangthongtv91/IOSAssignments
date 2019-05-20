@@ -23,6 +23,15 @@ class ViewController: UIViewController {
         colorView.layer.cornerRadius = 20
         colorView.layer.borderColor = UIColor.black.cgColor
         
+        let defaults = UserDefaults.standard
+        
+        redSwitch.isOn = defaults.bool(forKey: "redSwitchIsOn")
+        greenSwitch.isOn = defaults.bool(forKey: "greenSwitchIsOn")
+        blueSwitch.isOn = defaults.bool(forKey: "blueSwitchIsOn")
+        redSlider.setValue(defaults.float(forKey: "redSliderValue"), animated: true)
+        greenSlider.setValue(defaults.float(forKey: "greenSliderValue"), animated: true)
+        blueSlider.setValue(defaults.float(forKey: "blueSliderValue"), animated: true)
+        
         updateColor()
         updateControls()
     }
@@ -31,15 +40,25 @@ class ViewController: UIViewController {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: "redSwitchIsOn")
+        defaults.set(false, forKey: "blueSwitchIsOn")
+        defaults.set(false, forKey: "greenSwitchIsOn")
         
         if redSwitch.isOn {
+            defaults.set(true, forKey: "redSwitchIsOn")
             red = CGFloat(redSlider.value)
+            defaults.set(red, forKey: "redSliderValue")
         }
         if greenSwitch.isOn {
+            defaults.set(true, forKey: "greenSwitchIsOn")
             green = CGFloat(greenSlider.value)
+            defaults.set(green, forKey: "greenSliderValue")
         }
         if blueSwitch.isOn {
+            defaults.set(true, forKey: "blueSwitchIsOn")
             blue = CGFloat(blueSlider.value)
+            defaults.set(blue, forKey: "blueSliderValue")
         }
         let bgColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
         view.backgroundColor = bgColor
@@ -72,5 +91,5 @@ class ViewController: UIViewController {
         updateColor()
     }
     
+    
 }
-

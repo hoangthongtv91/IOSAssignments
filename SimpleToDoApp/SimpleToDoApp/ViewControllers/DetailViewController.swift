@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailViewController: UIViewController {
-    
+    var themeFLAG = false
     var toDo: ToDo! {
         didSet {
             titleLabel.text = toDo.title
-            descriptionLabel.text = "Description: \(toDo.toDoDescription)"
+            descriptionLabel.text = "Description: \(toDo.toDoDescription ?? "")"
             priorityLabel.text = "Priority: \(toDo.priority)"
             isCompleteLabel.text = toDo.isCompleted ? "Completed" : "Incompleted"
         }
@@ -28,7 +29,19 @@ class DetailViewController: UIViewController {
     }
     
     func setupUI() {
-        view.backgroundColor = .cyan
+        if themeFLAG {
+            view.backgroundColor = .black
+            titleLabel.textColor = .white
+            descriptionLabel.textColor = .white
+            priorityLabel.textColor = .white
+            isCompleteLabel.textColor = .white
+        } else {
+            view.backgroundColor = .white
+            titleLabel.textColor = .darkGray
+            descriptionLabel.textColor = .black
+            priorityLabel.textColor = .black
+            isCompleteLabel.textColor = .black
+        }
         let smaillStackView: UIStackView = {
             let sv = UIStackView(arrangedSubviews: [descriptionLabel, priorityLabel, isCompleteLabel])
             sv.translatesAutoresizingMaskIntoConstraints = false

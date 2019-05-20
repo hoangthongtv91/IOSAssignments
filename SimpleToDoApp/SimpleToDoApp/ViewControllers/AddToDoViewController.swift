@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol AddToDoViewControllerDelegate: class {
     func didFinishAddToDo(_ todo: ToDo)
@@ -15,8 +16,7 @@ protocol AddToDoViewControllerDelegate: class {
 }
 
 class AddToDoViewController: UIViewController {
-    
-    lazy var toDo = ToDo(title: titleTextField.text!, toDoDescription: descriptionTextField.text!, priority: Int(priorityTextField.text!)!, isCompleted: false)
+    var themeFLAG = false
     weak var delegate: AddToDoViewControllerDelegate?
     
     let titleLabel = UILabel(title: "Task: ", color: .darkGray, fontSize: 20, isBold: true)
@@ -47,18 +47,42 @@ class AddToDoViewController: UIViewController {
     }
     
     @objc fileprivate func didAddToDo() {
-        delegate?.didFinishAddToDo(toDo)
+        let managedContext = CoreDataManager.shared.persistentContainer.viewContext
+        let newToDo = NSEntityDescription.insertNewObject(forEntityName: "ToDo", into: managedContext)
+        newToDo.setValue(titleTextField.text, forKey: "title")
+        newToDo.setValue(descriptionTextField.text, forKey: "toDoDescription")
+        newToDo.setValue(Int(priorityTextField.text!) ?? 1, forKey: "priority")
+        CoreDataManager.shared.saveContext()
+        
+        delegate?.didFinishAddToDo(newToDo as! ToDo)
         navigationController?.popViewController(animated: true)
     }
     fileprivate func setupUI() {
         view.addSubview(stackView)
-        view.backgroundColor = .white
+        if themeFLAG {
+            view.backgroundColor = .black
+            titleLabel.textColor = .white
+            titleTextField.textColor = .white
+            descriptionLabel.textColor = .white
+            descriptionTextField.textColor = .white
+            priorityLabel.textColor = .white
+            priorityTextField.textColor = .white
+        } else {
+            view.backgroundColor = .white
+            titleLabel.textColor = .black
+            titleTextField.textColor = .black
+            descriptionLabel.textColor = .black
+            descriptionTextField.textColor = .black
+            priorityLabel.textColor = .black
+            priorityTextField.textColor = .black
+        }
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
     }
+    
     static func createTextField(placeholder: String, keyboardType : UIKeyboardType) -> UITextField {
         let tf = UITextField(frame: .zero)
         tf.translatesAutoresizingMaskIntoConstraints = false
